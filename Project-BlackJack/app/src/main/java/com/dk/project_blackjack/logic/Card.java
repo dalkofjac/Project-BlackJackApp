@@ -14,7 +14,7 @@ public class Card {
 
     public Card (int value, int secValue, String color, String name, String imgUrl){
         this.value = value;
-        this.secValue = value;
+        this.secValue = secValue;
         this.color = color;
         this.name = name;
         this.imgUrl = imgUrl;

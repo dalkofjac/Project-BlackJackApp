@@ -178,9 +178,16 @@ public class CardLoader {
     }
     public String getCardFullName(ArrayList<Card> cardList, int cardPosition){
         String cardFullName;
-        cardFullName = cardList.get(cardPosition).name + " of "
-                + cardList.get(cardPosition).color + "s" + " ("
-                + String.valueOf(cardList.get(cardPosition).value) + ")";
+        if(cardList.get(cardPosition).name.matches("Ace")){
+            cardFullName = cardList.get(cardPosition).name + " of "
+                    + cardList.get(cardPosition).color + "s" + " ("
+                    + String.valueOf(cardList.get(cardPosition).secValue) + "/"
+                    + String.valueOf(cardList.get(cardPosition).value) + ")";
+        }else{
+            cardFullName = cardList.get(cardPosition).name + " of "
+                    + cardList.get(cardPosition).color + "s" + " ("
+                    + String.valueOf(cardList.get(cardPosition).value) + ")";
+        }
         return cardFullName;
     }
 }
