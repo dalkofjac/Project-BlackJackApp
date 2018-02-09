@@ -18,4 +18,5 @@
     <string name="player_new">3</string>
     <string name="game_hit">Hit</string>
     <string name="game_stand">Stand</string>
+    <string name="game_reset">Reset</string>
 </resources>

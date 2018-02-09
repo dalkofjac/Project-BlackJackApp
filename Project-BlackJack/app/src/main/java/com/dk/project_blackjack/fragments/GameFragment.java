@@ -1,6 +1,7 @@
 package com.dk.project_blackjack.fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -26,8 +27,15 @@ import butterknife.OnClick;
  */
 
 public class GameFragment extends Fragment {
-    private String title = "";
+    private Context con;
+    private String title;
     private ArrayList<Card> cardList = new ArrayList<Card>();
+    private CardLoader cardLoader = new CardLoader();
+    private int dealerTotalSum;
+    private int playerTotalSum;
+    private int totalNumberOfCards;
+    private int randomCard;
+    private boolean gameOverFlag;
     Random rand = new Random();
 
     @BindView(R.id.tv_dealer_new)
@@ -47,6 +55,7 @@ public class GameFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_game,container,false);
         ButterKnife.bind(this, view);
         title = getResources().getString(R.string.game_fragment_title);
+        con = getActivity().getApplication();
 
         return view;
     }
@@ -60,27 +69,102 @@ public class GameFragment extends Fragment {
     }
 
     private void prepareTheGame(){
-        int totalNumberOfCards = 52;
-        cardList = CardLoader.loadDeck();
+        totalNumberOfCards = 52;
+        randomCard = 0;
+        cardList = cardLoader.loadDeck();
         dealer_total.setText("X");
+        playerTotalSum = 0;
+        dealerTotalSum = 0;
+        gameOverFlag = false;
 
-        int randomCard = rand.nextInt(totalNumberOfCards);
-        String dealerVisibleCard = cardList.get(randomCard).name + " | "
-                + cardList.get(randomCard).color + " ("
-                + String.valueOf(cardList.get(randomCard).value) + ")";
-
+        //dealer preparation
+        randomCard = rand.nextInt(totalNumberOfCards);
+        dealerTotalSum += cardList.get(randomCard).value;
+        dealer_new.setText(cardLoader.getCardFullName(cardList, randomCard));
         cardList.remove(randomCard);
+        totalNumberOfCards--;
 
+        randomCard = rand.nextInt(totalNumberOfCards);
+        dealerTotalSum += cardList.get(randomCard).value;
+        cardList.remove(randomCard);
+        totalNumberOfCards--;
 
-        dealer_new.setText(dealerVisibleCard);
+        //player preparation
+        randomCard = rand.nextInt(totalNumberOfCards);
+        playerTotalSum += cardList.get(randomCard).value;
+        player_new.setText(cardLoader.getCardFullName(cardList, randomCard));
+        cardList.remove(randomCard);
+        totalNumberOfCards--;
 
-        player_total.setText("");
-        player_new.setText(String.valueOf(rand.nextInt(11)));
+        randomCard = rand.nextInt(totalNumberOfCards);
+        playerTotalSum += cardList.get(randomCard).value;
+        player_new.append(", " + cardLoader.getCardFullName(cardList, randomCard));
+        cardList.remove(randomCard);
+        totalNumberOfCards--;
+
+        player_total.setText(String.valueOf(playerTotalSum));
+
+        if(playerTotalSum == 21){
+            Toast.makeText(con, "BlackJack! You won!", Toast.LENGTH_SHORT).show();
+            dealer_total.setText(String.valueOf(dealerTotalSum));
+            gameOverFlag = true;
+        }
 
     }
 
     @OnClick(R.id.button_hit)
     public void onButtonHitClick(){
-        Toast.makeText(getActivity().getApplicationContext(), "Hellow"+cardList.get(5).name.toString(), Toast.LENGTH_LONG).show();
+        if(gameOverFlag == true){
+            Toast.makeText(con, "Game is already over, please reset!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            randomCard = rand.nextInt(totalNumberOfCards);
+            playerTotalSum += cardList.get(randomCard).value;
+            player_new.append(", " + cardLoader.getCardFullName(cardList, randomCard));
+            cardList.remove(randomCard);
+            totalNumberOfCards--;
+
+            player_total.setText(String.valueOf(playerTotalSum));
+
+            if(playerTotalSum == 21){
+                Toast.makeText(con, "BlackJack! You won!", Toast.LENGTH_SHORT).show();
+                dealer_total.setText(String.valueOf(dealerTotalSum));
+                gameOverFlag = true;
+            }
+            else if(playerTotalSum > 21){
+                Toast.makeText(con, "You bust! You lost! Try again!", Toast.LENGTH_SHORT).show();
+                dealer_total.setText(String.valueOf(dealerTotalSum));
+                gameOverFlag = true;
+            }
+        }
+    }
+
+    @OnClick(R.id.button_stand)
+    public void onButtonStandClick(){
+        dealer_total.setText(String.valueOf(dealerTotalSum));
+        if(gameOverFlag == true){
+            Toast.makeText(con, "Game is already over, please reset!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            while(dealerTotalSum < playerTotalSum) {
+                randomCard = rand.nextInt(totalNumberOfCards);
+                dealerTotalSum += cardList.get(randomCard).value;
+                cardList.remove(randomCard);
+                totalNumberOfCards--;
+            }
+            dealer_total.setText(String.valueOf(dealerTotalSum));
+            if(dealerTotalSum > 21){
+                Toast.makeText(con, "Dealer busts! You won!", Toast.LENGTH_SHORT).show();
+            }
+            else if(dealerTotalSum <= 20 && dealerTotalSum >= playerTotalSum){
+                Toast.makeText(con, "Dealer wins! You lost! Try again!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        gameOverFlag = true;
+    }
+    @OnClick(R.id.button_reset)
+    public void onButtonResetClick(){
+        prepareTheGame();
+        gameOverFlag = false;
     }
 }

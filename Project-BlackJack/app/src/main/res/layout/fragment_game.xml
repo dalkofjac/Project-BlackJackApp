@@ -21,7 +21,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <ImageView
             android:layout_height="20dp"
@@ -37,8 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/midLayout"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:text="@string/dealer_1"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_dealer_new"
                 android:layout_weight="0.5"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -157,13 +157,14 @@
             <TextView
                 android:text="@string/player_new"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/tV_player_new"
                 android:layout_weight="0.5"
-                android:textSize="20sp"
-                android:textAlignment="center" />
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_height="80dp" />
 
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -182,7 +183,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/buttonsLayout">
 
             <Button
@@ -198,6 +199,20 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button_stand"
                 android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/buttonsLayout_2">
+
+            <Button
+                android:text="@string/game_reset"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_reset"
+                android:layout_width="200dp"
+                android:layout_gravity="center" />
         </LinearLayout>
 
     </LinearLayout>

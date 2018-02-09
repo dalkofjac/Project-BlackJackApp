@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class CardLoader {
-    public static ArrayList<Card> loadDeck(){
+    public ArrayList<Card> loadDeck(){
         ArrayList<Card> tempList = new ArrayList<Card>();
         Card card;
 
@@ -175,5 +175,12 @@ public class CardLoader {
         tempList.add(card);
 
         return tempList;
+    }
+    public String getCardFullName(ArrayList<Card> cardList, int cardPosition){
+        String cardFullName;
+        cardFullName = cardList.get(cardPosition).name + " of "
+                + cardList.get(cardPosition).color + "s" + " ("
+                + String.valueOf(cardList.get(cardPosition).value) + ")";
+        return cardFullName;
     }
 }
