@@ -5,7 +5,6 @@ package com.dk.project_blackjack.logic;
  */
 
 public class Card {
-    //public int id;
     public int value;
     public int secValue;
     public String color;
