@@ -40,10 +40,10 @@ public class GameFragment extends Fragment {
     private boolean hadAcePlayer2;
     private boolean hadAcePlayerHit;
     private boolean hadAcePlayerHitAlt;
-    private boolean hadAceDealer1 = false;
-    private boolean hadAceDealer2 = false;
-    private boolean hadAceDealerStand = false;
-    private boolean hadAceDealerStandAlt = false;
+    private boolean hadAceDealer1;
+    private boolean hadAceDealer2;
+    private boolean hadAceDealerStand;
+    private boolean hadAceDealerStandAlt;
     Random rand = new Random();
 
     @BindView(R.id.tv_dealer_new)
@@ -132,8 +132,6 @@ public class GameFragment extends Fragment {
         cardList.remove(randomCard);
         totalNumberOfCards--;
 
-        player_total.setText(String.valueOf(playerTotalSum));
-
         if(playerTotalSum > 21 && hadAcePlayer1 == true){
             playerTotalSum -=10;
             hadAcePlayer1 = false;
@@ -142,6 +140,8 @@ public class GameFragment extends Fragment {
             playerTotalSum -=10;
             hadAcePlayer2 = false;
         }
+
+        player_total.setText(String.valueOf(playerTotalSum));
 
         if(playerTotalSum == 21){
             Toast.makeText(con, "BlackJack! You won!", Toast.LENGTH_SHORT).show();
