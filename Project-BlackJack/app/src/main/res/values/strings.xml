@@ -3,8 +3,8 @@
     <string name="action_settings">Settings</string>
     <string name="settings_first">Settings</string>
     <string name="settings_sec">This is settings!</string>
-    <string name ="settings_fragment_title">Settings</string>
-    <string name="game_fragment_title">Play BlackJack</string>
+    <string name="settings_fragment_title">Settings</string>
+    <string name="game_fragment_title">BlackJack - The game</string>
     <string name="game_first">BLACKJACK v1.0.0</string>
     <string name="dealer_1">Dealer:</string>
     <string name="dealer_total_label">Total:</string>
@@ -19,4 +19,6 @@
     <string name="game_hit">Hit</string>
     <string name="game_stand">Stand</string>
     <string name="game_reset">Reset</string>
+    <string name="opening_blackjack">BlackJack v1.0.0</string>
+    <string name="play_the_game">Play the game</string>
 </resources>
