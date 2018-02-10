@@ -4,7 +4,7 @@
     <string name="settings_first">Settings</string>
     <string name="settings_sec">This is settings!</string>
     <string name ="settings_fragment_title">Settings</string>
-    <string name="game_fragment_title">Game</string>
+    <string name="game_fragment_title">Play BlackJack</string>
     <string name="game_first">BLACKJACK v1.0.0</string>
     <string name="dealer_1">Dealer:</string>
     <string name="dealer_total_label">Total:</string>
