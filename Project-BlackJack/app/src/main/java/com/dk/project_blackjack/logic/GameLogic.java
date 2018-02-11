@@ -3,6 +3,9 @@ package com.dk.project_blackjack.logic;
 import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.dk.project_blackjack.R;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,6 +31,15 @@ public class GameLogic {
     private boolean hadAceDealer2;
     private boolean hadAceDealerStand;
     private boolean hadAceDealerStandAlt;
+
+    private String response1;
+    private String response2;
+    private String response3;
+    private String response4;
+    private String response5;
+    private String response6;
+    private String response7;
+
     Random rand = new Random();
 
     TextView dealer_new;
@@ -61,6 +73,8 @@ public class GameLogic {
         hadAceDealer2 = false;
         hadAceDealerStand = false;
         hadAceDealerStandAlt = false;
+
+        prepareResponses();
 
         //dealer preparation
         randomCard = rand.nextInt(totalNumberOfCards);
@@ -111,14 +125,14 @@ public class GameLogic {
         player_total.setText(String.valueOf(playerTotalSum));
 
         if(playerTotalSum == 21){
-            Toast.makeText(con, "BlackJack! You won!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(con, response1, Toast.LENGTH_SHORT).show();
             dealer_total.setText(String.valueOf(dealerTotalSum));
             gameOverFlag = true;
         }
     }
     public void hitPressed(){
         if(gameOverFlag == true){
-            Toast.makeText(con, "Game is already over, please reset!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(con, response7, Toast.LENGTH_SHORT).show();
         }
         else{
             randomCard = rand.nextInt(totalNumberOfCards);
@@ -161,12 +175,12 @@ public class GameLogic {
             player_total.setText(String.valueOf(playerTotalSum));
 
             if(playerTotalSum == 21){
-                Toast.makeText(con, "BlackJack! You won!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(con, response1, Toast.LENGTH_SHORT).show();
                 dealer_total.setText(String.valueOf(dealerTotalSum));
                 gameOverFlag = true;
             }
             else if(playerTotalSum > 21){
-                Toast.makeText(con, "You bust! You lost! Try again!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(con, response2, Toast.LENGTH_SHORT).show();
                 dealer_total.setText(String.valueOf(dealerTotalSum));
                 gameOverFlag = true;
             }
@@ -184,7 +198,7 @@ public class GameLogic {
         dealer_total.setText(String.valueOf(dealerTotalSum));
 
         if(gameOverFlag == true){
-            Toast.makeText(con, "Game is already over, please reset!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(con, response7, Toast.LENGTH_SHORT).show();
         }
         else{
             while(dealerTotalSum < playerTotalSum) {
@@ -227,16 +241,16 @@ public class GameLogic {
 
             dealer_total.setText(String.valueOf(dealerTotalSum));
             if(dealerTotalSum > 21){
-                Toast.makeText(con, "Dealer busts! You won!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(con, response3, Toast.LENGTH_SHORT).show();
             }
             else if(dealerTotalSum <= 20 && dealerTotalSum > playerTotalSum){
-                Toast.makeText(con, "Dealer wins! You lost! Try again!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(con, response5, Toast.LENGTH_SHORT).show();
             }
             else if(dealerTotalSum <= 20 && dealerTotalSum == playerTotalSum){
-                Toast.makeText(con, "Push! Nobody wins!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(con, response6, Toast.LENGTH_SHORT).show();
             }
             else if(dealerTotalSum == 21){
-                Toast.makeText(con, "Dealer BlackJack! Dealer wins!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(con, response4, Toast.LENGTH_SHORT).show();
             }
         }
         gameOverFlag = true;
@@ -244,5 +258,14 @@ public class GameLogic {
     public void resetTheGame(){
         gameOverFlag = false;
         prepareTheGame();
+    }
+    private void prepareResponses(){
+        response1 = con.getResources().getString(R.string.blackjack_you_win);
+        response2 = con.getResources().getString(R.string.you_bust);
+        response3 = con.getResources().getString(R.string.dealer_bust);
+        response4 = con.getResources().getString(R.string.dealer_black_jack);
+        response5 = con.getResources().getString(R.string.dealer_win);
+        response6 = con.getResources().getString(R.string.push_no_winner);
+        response7 = con.getResources().getString(R.string.game_over_reset);
     }
 }

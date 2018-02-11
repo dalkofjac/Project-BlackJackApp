@@ -21,4 +21,11 @@
     <string name="game_reset">Reset</string>
     <string name="opening_blackjack">BlackJack v1.0.0</string>
     <string name="play_the_game">Play the game</string>
+    <string name="blackjack_you_win">BlackJack! You win!</string>
+    <string name="you_bust">You bust! You lost! Try again!</string>
+    <string name="dealer_bust">Dealer busts! You won!</string>
+    <string name="dealer_black_jack">Dealer BlackJack! Dealer wins!</string>
+    <string name="dealer_win">Dealer wins! You lost! Try again!</string>
+    <string name="push_no_winner">Push! Nobody wins!</string>
+    <string name="game_over_reset">Game is already over, please reset!</string>
 </resources>
