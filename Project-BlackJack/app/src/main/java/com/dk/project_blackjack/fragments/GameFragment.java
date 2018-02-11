@@ -8,16 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dk.project_blackjack.R;
-import com.dk.project_blackjack.logic.Card;
-import com.dk.project_blackjack.logic.CardLoader;
 import com.dk.project_blackjack.logic.GameLogic;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +25,7 @@ public class GameFragment extends Fragment {
     private String title;
     private GameLogic gameLogic;
 
-    @BindView(R.id.tv_dealer_new)
+    @BindView(R.id.tV_dealer_new)
     TextView dealer_new;
 
     @BindView(R.id.tV_dealer_total)

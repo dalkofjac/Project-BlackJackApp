@@ -50,6 +50,16 @@
                 android:textColor="@color/cardview_light_background"
                 android:textSize="16sp"
                 style="@android:style/Widget.Material.Light.Button.Borderless" />
+
+            <TextView
+                android:text="@string/credentials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tV_credentials"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:textStyle="normal|italic"
+                android:textAlignment="center" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

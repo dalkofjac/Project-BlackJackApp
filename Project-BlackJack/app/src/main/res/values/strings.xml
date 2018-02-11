@@ -9,7 +9,7 @@
     <string name="dealer_1">Dealer:</string>
     <string name="dealer_total_label">Total:</string>
     <string name="dealer_total">12</string>
-    <string name="dealer_new_label">Open card:</string>
+    <string name="dealer_new_label">Open card(s):</string>
     <string name="dealer_new">Test card one (XX)</string>
     <string name="player_1">Player:</string>
     <string name="player_total_label">Total:</string>
@@ -28,4 +28,6 @@
     <string name="dealer_win">Dealer wins! You lost! Try again!</string>
     <string name="push_no_winner">Push! Nobody wins!</string>
     <string name="game_over_reset">Game is already over, please reset!</string>
+    <string name="credentials">Created by Dalibor K. © 2018.</string>
+    <string name="beta_sign">BETA</string>
 </resources>

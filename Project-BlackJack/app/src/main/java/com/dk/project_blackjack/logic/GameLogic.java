@@ -31,6 +31,7 @@ public class GameLogic {
     private boolean hadAceDealer2;
     private boolean hadAceDealerStand;
     private boolean hadAceDealerStandAlt;
+    private String dealerAllCards;
 
     private String response1;
     private String response2;
@@ -55,11 +56,19 @@ public class GameLogic {
         this.player_total = player_total;
     }
 
+    /**
+     * Preparing the game, i.e. doing initial steps in blackjack play
+     * Drawing random card, checking if its ace - if it is then raise flag that dealer got ace,
+     * putting card value to dealers total and card name to dealers card output string,
+     * then deleting card from deck and moving onto next card
+     * Doing same process twice for dealer and twice for player
+     */
     public void prepareTheGame(){
         totalNumberOfCards = 52;
         randomCard = 0;
         cardList = cardLoader.loadDeck();
         dealer_total.setText("X");
+        dealerAllCards = "";
         playerTotalSum = 0;
         dealerTotalSum = 0;
         gameOverFlag = false;
@@ -83,6 +92,7 @@ public class GameLogic {
         }
         dealerTotalSum += cardList.get(randomCard).value;
         dealer_new.setText(cardLoader.getCardFullName(cardList, randomCard));
+        dealerAllCards += cardLoader.getCardFullName(cardList, randomCard);
         cardList.remove(randomCard);
         totalNumberOfCards--;
 
@@ -91,6 +101,7 @@ public class GameLogic {
             hadAceDealer2 = true;
         }
         dealerTotalSum += cardList.get(randomCard).value;
+        dealerAllCards += ", " + cardLoader.getCardFullName(cardList, randomCard);
         cardList.remove(randomCard);
         totalNumberOfCards--;
 
@@ -127,9 +138,19 @@ public class GameLogic {
         if(playerTotalSum == 21){
             Toast.makeText(con, response1, Toast.LENGTH_SHORT).show();
             dealer_total.setText(String.valueOf(dealerTotalSum));
+            dealer_new.setText(dealerAllCards);
             gameOverFlag = true;
         }
     }
+
+    /**
+     * Implements actions that happen when player chooses to go for Hit
+     * Firstly checks if gameover flag is up, if it is displays that reset is needed
+     * Otherwise player gets another card, same process with random number checking for ace etc.
+     * After that few if-then statements which are checking for ace flags in various turns, and
+     * lowering players total if it goes over 21 with ace
+     * On the end two gameover checks
+     */
     public void hitPressed(){
         if(gameOverFlag == true){
             Toast.makeText(con, response7, Toast.LENGTH_SHORT).show();
@@ -177,24 +198,37 @@ public class GameLogic {
             if(playerTotalSum == 21){
                 Toast.makeText(con, response1, Toast.LENGTH_SHORT).show();
                 dealer_total.setText(String.valueOf(dealerTotalSum));
+                dealer_new.setText(dealerAllCards);
                 gameOverFlag = true;
             }
             else if(playerTotalSum > 21){
                 Toast.makeText(con, response2, Toast.LENGTH_SHORT).show();
                 dealer_total.setText(String.valueOf(dealerTotalSum));
+                dealer_new.setText(dealerAllCards);
                 gameOverFlag = true;
             }
         }
     }
+
+    /**
+     * Implements actions that happen when player chooses to go for Stand
+     * Firstly checks for dealers aces in first drawings, and lowers dealers total according to it
+     * Then checks if gameover flag is up, if it is displays that reset is needed
+     * Otherwise dealer draws cards until he has higher or same total as player, with all steps
+     * described in prepareTheGame() method
+     * In each while loop ace check is being done to lower dealers total if necessary
+     * On the end gameover check is being done since game has to end on this step
+     */
     public void standPressed(){
         if(dealerTotalSum > 21 && hadAceDealer1 == true){
-            playerTotalSum -= 10;
+            dealerTotalSum -= 10;
             hadAceDealer1 = false;
         }
         else if(dealerTotalSum > 21 && hadAceDealer2 == true){
-            playerTotalSum -= 10;
+            dealerTotalSum -= 10;
             hadAceDealer2 = false;
         }
+
         dealer_total.setText(String.valueOf(dealerTotalSum));
 
         if(gameOverFlag == true){
@@ -212,20 +246,21 @@ public class GameLogic {
                     }
                 }
                 dealerTotalSum += cardList.get(randomCard).value;
+                dealerAllCards += ", " + cardLoader.getCardFullName(cardList, randomCard);
                 cardList.remove(randomCard);
                 totalNumberOfCards--;
 
                 if(dealerTotalSum > 31 && (hadAceDealer1 == true && hadAceDealer2 == true)){
-                    playerTotalSum -= 20;
+                    dealerTotalSum -= 20;
                     hadAceDealer1 = false;
                     hadAceDealer2 = false;
                 }
                 else if(dealerTotalSum > 21 && hadAceDealer1 == true){
-                    playerTotalSum -= 10;
+                    dealerTotalSum -= 10;
                     hadAceDealer1 = false;
                 }
                 else if(dealerTotalSum > 21 && hadAceDealer2 == true){
-                    playerTotalSum -= 10;
+                    dealerTotalSum -= 10;
                     hadAceDealer2 = false;
                 }
 
@@ -240,6 +275,8 @@ public class GameLogic {
             }
 
             dealer_total.setText(String.valueOf(dealerTotalSum));
+            dealer_new.setText(dealerAllCards);
+
             if(dealerTotalSum > 21){
                 Toast.makeText(con, response3, Toast.LENGTH_SHORT).show();
             }
@@ -255,10 +292,20 @@ public class GameLogic {
         }
         gameOverFlag = true;
     }
+
+    /**
+     * Simple method that resets the game for player
+     * gameover flag is set to false and another prepareTheGame is started
+     */
     public void resetTheGame(){
         gameOverFlag = false;
         prepareTheGame();
     }
+
+    /**
+     * Method that gets all the responses class has to give to players on various moments
+     * It gets responses from res/values/strings xml
+     */
     private void prepareResponses(){
         response1 = con.getResources().getString(R.string.blackjack_you_win);
         response2 = con.getResources().getString(R.string.you_bust);

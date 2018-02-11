@@ -118,12 +118,12 @@
             <TextView
                 android:text="@string/dealer_new"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_dealer_new"
+                android:id="@+id/tV_dealer_new"
                 android:textSize="14sp"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                android:background="@android:color/background_light" />
+                android:background="@android:color/background_light"
+                android:layout_height="52dp" />
 
         </LinearLayout>
 
@@ -134,7 +134,7 @@
             android:id="@+id/tv_player_1"
             android:textAlignment="center"
             android:textStyle="normal|bold"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:textColor="@color/colorPrimary"
             android:textSize="22sp" />
 
@@ -196,7 +196,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:background="@android:color/background_light"
-                android:layout_height="55dp" />
+                android:layout_height="52dp" />
 
         </LinearLayout>
 
@@ -228,38 +228,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_hit"
-                android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:background="@color/colorPrimary"
-                android:layout_marginRight="2.5dp" />
+                android:layout_marginRight="2.5dp"
+                android:layout_weight="0.4" />
 
             <Button
                 android:text="@string/game_stand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_stand"
-                android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:background="@color/colorPrimary"
-                android:layout_marginLeft="2.5dp" />
+                android:layout_marginLeft="2.5dp"
+                android:layout_weight="0.4" />
+
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/buttonsLayout_2"
             android:layout_marginTop="5dp">
 
             <Button
                 android:text="@string/game_reset"
-                android:layout_height="wrap_content"
                 android:id="@+id/button_reset"
-                android:layout_width="200dp"
-                android:layout_gravity="center"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:background="?attr/colorPrimary"
-                android:textColor="@android:color/holo_red_light" />
+                android:textColor="@color/colorAccent"
+                android:layout_weight="0.1"
+                android:layout_gravity="right"
+                android:layout_height="30dp"
+                android:layout_width="match_parent" />
         </LinearLayout>
 
     </LinearLayout>
