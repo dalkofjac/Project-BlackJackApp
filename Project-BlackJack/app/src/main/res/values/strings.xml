@@ -31,4 +31,10 @@
     <string name="credentials">Created by Dalibor K. © 2018.</string>
     <string name="beta_sign">BETA</string>
     <string name="score">Players wins: X, Dealer wins: X, Draws: X</string>
+    <string name="dots">...</string>
+    <string name="reset_total_score">Reset total score</string>
+    <string name="are_you_sure_question">Are you sure you want to reset the score?</string>
+    <string name="yes_answ">Reset</string>
+    <string name="no_answ">Cancel</string>
+    <string name="success_reset">Total score was successfully reset.</string>
 </resources>

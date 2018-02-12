@@ -10,13 +10,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/topLayout">
 
-        <TextView
-            android:text="@string/settings_first"
+        <Button
+            android:text="@string/reset_total_score"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tV_settings_first"
-            android:textStyle="normal|bold"
-            android:textAlignment="center" />
+            android:layout_height="65dp"
+            android:id="@+id/button_reset_score"
+            style="@android:style/Widget.Button.Small"
+            android:background="@android:color/background_light"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -26,12 +28,11 @@
         android:id="@+id/bottomLayout">
 
         <TextView
-            android:text="@string/settings_sec"
+            android:text="@string/dots"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tV_settings_sec"
-            android:textSize="20sp"
+            android:id="@+id/tV_dots"
             android:textAlignment="center"
-            android:layout_marginTop="20dp" />
+            android:textSize="25sp" />
     </LinearLayout>
 </LinearLayout>
