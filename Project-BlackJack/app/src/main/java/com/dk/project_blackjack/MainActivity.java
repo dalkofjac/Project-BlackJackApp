@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import com.dk.project_blackjack.fragments.GameFragment;
 import com.dk.project_blackjack.fragments.SettingsFragment;
 import com.dk.project_blackjack.helpers.FragmentStarter;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
     private FragmentStarter fragmentStarter;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         GameFragment gf = new GameFragment();
         mFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fragmentStarter.startFragment(gf);
+
+        FlowManager.init(new FlowConfig.Builder(this).build());
 
     }
 

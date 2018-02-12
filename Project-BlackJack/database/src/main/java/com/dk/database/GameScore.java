@@ -3,7 +3,10 @@ package com.dk.database;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+
+import java.util.List;
 
 /**
  * Created by Dalibor on 12.2.2018..
@@ -11,7 +14,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 
 @Table(database = MainDatabase.class)
 public class GameScore extends BaseModel{
-    @PrimaryKey(autoincrement = true)
+    @PrimaryKey
     @Column int id;
     @Column int dealerScore;
     @Column int playerScore;
@@ -57,5 +60,13 @@ public class GameScore extends BaseModel{
 
     public void setDraws(int draws) {
         this.draws = draws;
+    }
+
+    public static List<GameScore> getAll(){
+        return SQLite.select().from(GameScore.class).queryList();
+    }
+
+    public static GameScore getCurrentGameScore(int id){
+        return SQLite.select().from(GameScore.class).where(GameScore_Table.id.eq(id)).querySingle();
     }
 }

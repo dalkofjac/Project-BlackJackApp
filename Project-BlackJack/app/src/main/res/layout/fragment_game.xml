@@ -12,7 +12,7 @@
         android:id="@+id/topLayout"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center">
 
         <ImageView
@@ -226,17 +226,17 @@
             <Button
                 android:text="@string/game_hit"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/button_hit"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:background="@color/colorPrimary"
                 android:layout_marginRight="2.5dp"
-                android:layout_weight="0.4" />
+                android:layout_weight="0.4"
+                android:layout_height="40dp" />
 
             <Button
                 android:text="@string/game_stand"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/button_stand"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:background="@color/colorPrimary"
@@ -263,6 +263,15 @@
                 android:layout_height="30dp"
                 android:layout_width="match_parent" />
         </LinearLayout>
+
+        <TextView
+            android:text="@string/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tV_score"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textAlignment="center" />
 
     </LinearLayout>
 </LinearLayout>

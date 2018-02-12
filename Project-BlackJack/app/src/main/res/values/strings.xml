@@ -30,4 +30,5 @@
     <string name="game_over_reset">Game is already over, please reset!</string>
     <string name="credentials">Created by Dalibor K. © 2018.</string>
     <string name="beta_sign">BETA</string>
+    <string name="score">Players wins: X, Dealer wins: X, Draws: X</string>
 </resources>

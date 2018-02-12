@@ -37,13 +37,16 @@ public class GameFragment extends Fragment {
     @BindView(R.id.tV_player_total)
     TextView player_total;
 
+    @BindView(R.id.tV_score)
+    TextView totalScore;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game,container,false);
         ButterKnife.bind(this, view);
         title = getResources().getString(R.string.game_fragment_title);
         con = getActivity().getApplication();
-        gameLogic = new GameLogic(con, dealer_new, dealer_total, player_new, player_total);
+        gameLogic = new GameLogic(con, dealer_new, dealer_total, player_new, player_total, totalScore);
 
         return view;
     }

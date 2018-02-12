@@ -4,7 +4,12 @@ import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dk.database.GameScore;
+import com.dk.database.GameScore_Table;
 import com.dk.project_blackjack.R;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,6 +23,7 @@ public class GameLogic {
     private Context con;
     private ArrayList<Card> cardList = new ArrayList<Card>();
     private CardLoader cardLoader = new CardLoader();
+    private GameScore score = new GameScore();
     private int dealerTotalSum;
     private int playerTotalSum;
     private int totalNumberOfCards;
@@ -47,13 +53,16 @@ public class GameLogic {
     TextView dealer_total;
     TextView player_new;
     TextView player_total;
+    TextView totalScore;
 
-    public GameLogic(Context con, TextView dealer_new, TextView dealer_total, TextView player_new, TextView player_total){
+    public GameLogic(Context con, TextView dealer_new, TextView dealer_total, TextView player_new,
+                     TextView player_total, TextView totalScore){
         this.con = con;
         this.dealer_new = dealer_new;
         this.dealer_total = dealer_total;
         this.player_new = player_new;
         this.player_total = player_total;
+        this.totalScore = totalScore;
     }
 
     /**
@@ -83,6 +92,7 @@ public class GameLogic {
         hadAceDealerStand = false;
         hadAceDealerStandAlt = false;
 
+        getGameScore();
         prepareResponses();
 
         //dealer preparation
@@ -139,6 +149,7 @@ public class GameLogic {
             Toast.makeText(con, response1, Toast.LENGTH_SHORT).show();
             dealer_total.setText(String.valueOf(dealerTotalSum));
             dealer_new.setText(dealerAllCards);
+            setGameScore(0);
             gameOverFlag = true;
         }
     }
@@ -199,12 +210,14 @@ public class GameLogic {
                 Toast.makeText(con, response1, Toast.LENGTH_SHORT).show();
                 dealer_total.setText(String.valueOf(dealerTotalSum));
                 dealer_new.setText(dealerAllCards);
+                setGameScore(0);
                 gameOverFlag = true;
             }
             else if(playerTotalSum > 21){
                 Toast.makeText(con, response2, Toast.LENGTH_SHORT).show();
                 dealer_total.setText(String.valueOf(dealerTotalSum));
                 dealer_new.setText(dealerAllCards);
+                setGameScore(1);
                 gameOverFlag = true;
             }
         }
@@ -279,15 +292,19 @@ public class GameLogic {
 
             if(dealerTotalSum > 21){
                 Toast.makeText(con, response3, Toast.LENGTH_SHORT).show();
+                setGameScore(0);
             }
             else if(dealerTotalSum <= 20 && dealerTotalSum > playerTotalSum){
                 Toast.makeText(con, response5, Toast.LENGTH_SHORT).show();
+                setGameScore(1);
             }
             else if(dealerTotalSum <= 20 && dealerTotalSum == playerTotalSum){
                 Toast.makeText(con, response6, Toast.LENGTH_SHORT).show();
+                setGameScore(2);
             }
             else if(dealerTotalSum == 21){
                 Toast.makeText(con, response4, Toast.LENGTH_SHORT).show();
+                setGameScore(1);
             }
         }
         gameOverFlag = true;
@@ -314,5 +331,41 @@ public class GameLogic {
         response5 = con.getResources().getString(R.string.dealer_win);
         response6 = con.getResources().getString(R.string.push_no_winner);
         response7 = con.getResources().getString(R.string.game_over_reset);
+    }
+
+    private void getGameScore(){
+        if(SQLite.select().from(GameScore.class).where(GameScore_Table.id.eq(0)).queryList().isEmpty()){
+            GameScore firstScore = new GameScore(0, 0, 0, 0);
+            score = firstScore;
+            score.save();
+        }
+        else{
+            score = GameScore.getCurrentGameScore(0);
+        }
+        updateScore();
+    }
+
+    private void setGameScore(int var){
+        int newScore = 0;
+        if(var == 0){
+            newScore = score.getPlayerScore();
+            score.setPlayerScore(newScore+1);
+        }
+        else if(var == 1){
+            newScore = score.getDealerScore();
+            score.setDealerScore(newScore+1);
+        }
+        else{
+            newScore = score.getDraws();
+            score.setDraws(newScore+1);
+        }
+        score.update();
+        updateScore();
+    }
+
+    private void updateScore(){
+        totalScore.setText("Player score: " + String.valueOf(score.getPlayerScore()) + " | "
+                + "Dealer score: " + String.valueOf(score.getDealerScore()) + " | "
+                + "Draws: " + String.valueOf(score.getDraws()));
     }
 }
