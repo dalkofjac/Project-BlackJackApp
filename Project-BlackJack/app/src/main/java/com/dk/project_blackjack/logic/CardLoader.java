@@ -7,6 +7,10 @@ import java.util.ArrayList;
  */
 
 public class CardLoader {
+    /**
+     * Method that loads full card deck and stores it into list
+     * @return
+     */
     public ArrayList<Card> loadDeck(){
         ArrayList<Card> tempList = new ArrayList<Card>();
         Card card;
@@ -176,6 +180,13 @@ public class CardLoader {
 
         return tempList;
     }
+
+    /**
+     * Method that gets card information needed for output in format of "cardName of cardColor (value)"
+     * @param cardList
+     * @param cardPosition
+     * @return
+     */
     public String getCardFullName(ArrayList<Card> cardList, int cardPosition){
         String cardFullName;
         if(cardList.get(cardPosition).name.matches("Ace")){

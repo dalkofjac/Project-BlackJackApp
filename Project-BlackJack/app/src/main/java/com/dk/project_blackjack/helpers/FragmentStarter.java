@@ -17,6 +17,10 @@ public class FragmentStarter {
         this.activity = activity;
     }
 
+    /**
+     * Method used to simplify fragment start process
+     * @param fragment
+     */
     public void startFragment(Fragment fragment){
         FragmentTransaction fm = activity.getFragmentManager().beginTransaction();
         fm.replace(R.id.fragment_container, fragment);

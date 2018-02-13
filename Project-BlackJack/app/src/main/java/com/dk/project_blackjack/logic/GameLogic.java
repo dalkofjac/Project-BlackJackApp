@@ -156,7 +156,7 @@ public class GameLogic {
 
     /**
      * Implements actions that happen when player chooses to go for Hit
-     * Firstly checks if gameover flag is up, if it is displays that reset is needed
+     * Firstly checks if gameover flag is up, if it is then displays that reset is needed
      * Otherwise player gets another card, same process with random number checking for ace etc.
      * After that few if-then statements which are checking for ace flags in various turns, and
      * lowering players total if it goes over 21 with ace
@@ -333,6 +333,9 @@ public class GameLogic {
         response7 = con.getResources().getString(R.string.game_over_reset);
     }
 
+    /**
+     * Method which fetches player and dealer score and shows it to the user
+     */
     private void getGameScore(){
         if(SQLite.select().from(GameScore.class).where(GameScore_Table.id.eq(0)).queryList().isEmpty()){
             GameScore firstScore = new GameScore(0, 0, 0, 0);
@@ -345,6 +348,11 @@ public class GameLogic {
         updateScore();
     }
 
+    /**
+     * Method that updates score according to game result
+     * @param var This variable represents whose score should be increased by 1
+     *            0 = players score, 1 = dealers score, 2 = draws
+     */
     private void setGameScore(int var){
         int newScore = 0;
         if(var == 0){
@@ -363,6 +371,9 @@ public class GameLogic {
         updateScore();
     }
 
+    /**
+     * Simple method which updates the current score on the screen
+     */
     private void updateScore(){
         totalScore.setText("Player score: " + String.valueOf(score.getPlayerScore()) + " | "
                 + "Dealer score: " + String.valueOf(score.getDealerScore()) + " | "
