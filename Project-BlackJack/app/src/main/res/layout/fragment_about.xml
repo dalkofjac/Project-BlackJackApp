@@ -130,7 +130,51 @@
                     android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottomLayout"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp">
 
-    </LinearLayout>
+            <TextView
+                android:text="@string/contact_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tV_contact_us"
+                android:textStyle="normal|bold"
+                android:textSize="14sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ImageView
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/thin_line"
+                android:id="@+id/thin_line_123"
+                android:layout_gravity="center"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:text="@string/feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tV_contact_detail"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ImageButton
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_dialog_email"
+                android:layout_gravity="center"
+                android:layout_width="250dp"
+                android:id="@+id/iButton_feedback"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorAccent" />
+
+        </LinearLayout>
+
+</LinearLayout>
 
 </LinearLayout>

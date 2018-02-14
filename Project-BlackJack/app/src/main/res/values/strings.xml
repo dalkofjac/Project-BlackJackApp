@@ -38,7 +38,7 @@
     <string name="no_answ">Cancel</string>
     <string name="success_reset">Total score was successfully reset.</string>
     <string name="about_fragment_title">About app</string>
-    <string name="action_about">About</string>
+    <string name="action_about">About app</string>
     <string name="app_name_general">APPLICATION</string>
     <string name="app_version_general">Version</string>
     <string name="app_version">1.0.0</string>
@@ -46,4 +46,12 @@
     <string name="app_author">Dalibor K.</string>
     <string name="app_project_general">Project</string>
     <string name="app_project">Project-BlackJackApp</string>
+    <string name="contact_us">CONTACT</string>
+    <string name="feedback">Found a bug or saw a place for improvement? Contact us!</string>
+    <string name="contact_fragment_title">Contact us</string>
+    <string name="write_us">Write us and we will try to answer ASAP!</string>
+    <string name="send_mail">Send</string>
+    <string name="hint_name">You name...</string>
+    <string name="hint_email">Your email...</string>
+    <string name="hint_msg">Your message...</string>
 </resources>

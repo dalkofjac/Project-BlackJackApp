@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layoutsHolder"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/topLayout"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:text="@string/write_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tV_write_us"
+                android:textStyle="normal|italic"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary" />
+
+            <ImageView
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/thin_line"
+                android:id="@+id/thin_line_123"
+                android:layout_gravity="center"
+                android:layout_width="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/middleLayout">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/eT_name"
+                android:textSize="16sp"
+                android:hint="@string/hint_name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/eT_email"
+                android:textSize="16sp"
+                android:hint="@string/hint_email" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="textMultiLine|textPersonName"
+                android:ems="10"
+                android:id="@+id/eT_msg"
+                android:textSize="16sp"
+                android:hint="@string/hint_msg"
+                android:gravity="top|center_vertical"
+                android:layout_height="120dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottomLayout"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:text="@string/send_mail"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_send_mail"
+                style="@style/Widget.AppCompat.Button.Colored" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

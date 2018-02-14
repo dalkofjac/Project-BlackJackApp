@@ -1,6 +1,5 @@
 package com.dk.project_blackjack.fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,15 +19,14 @@ import butterknife.OnClick;
  * Created by Dalibor on 14.2.2018..
  */
 
-public class AboutFragment extends Fragment {
+public class ContactFragment extends Fragment {
     private String title = "";
-    private FragmentStarter fragmentStarter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_about, container, false);
+        View view = inflater.inflate(R.layout.fragment_contact, container, false);
         ButterKnife.bind(this, view);
-        title = getResources().getString(R.string.about_fragment_title);
-        fragmentStarter = new FragmentStarter(getActivity());
+        title = getResources().getString(R.string.contact_fragment_title);
         return view;
     }
 
@@ -43,9 +41,8 @@ public class AboutFragment extends Fragment {
         super.onDestroy();
     }
 
-    @OnClick(R.id.iButton_feedback)
-    public void onIButtonFeedbackClicked(){
-        ContactFragment cf = new ContactFragment();
-        fragmentStarter.startFragment(cf);
+    @OnClick(R.id.button_send_mail)
+    public void onButtonSendMailClicked(){
+        Toast.makeText(getActivity().getApplicationContext(), "Message sent!", Toast.LENGTH_SHORT).show();
     }
 }
