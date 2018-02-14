@@ -59,6 +59,11 @@ public class GameFragment extends Fragment {
         gameLogic.prepareTheGame();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     @OnClick(R.id.button_hit)
     public void onButtonHitClick(){
         gameLogic.hitPressed();

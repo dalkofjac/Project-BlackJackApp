@@ -46,6 +46,11 @@ public class SettingsFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     @OnClick(R.id.button_reset_score)
     public void onButtonResetScoreClick(){
         alertDialog.setTitle("Are you sure you want to reset the score?");

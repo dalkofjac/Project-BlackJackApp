@@ -37,4 +37,13 @@
     <string name="yes_answ">Reset</string>
     <string name="no_answ">Cancel</string>
     <string name="success_reset">Total score was successfully reset.</string>
+    <string name="about_fragment_title">About app</string>
+    <string name="action_about">About</string>
+    <string name="app_name_general">APPLICATION</string>
+    <string name="app_version_general">Version</string>
+    <string name="app_version">1.0.0</string>
+    <string name="app_author_general">Author</string>
+    <string name="app_author">Dalibor K.</string>
+    <string name="app_project_general">Project</string>
+    <string name="app_project">Project-BlackJackApp</string>
 </resources>

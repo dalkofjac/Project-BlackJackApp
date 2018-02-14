@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dk.project_blackjack.fragments.AboutFragment;
 import com.dk.project_blackjack.fragments.GameFragment;
 import com.dk.project_blackjack.fragments.SettingsFragment;
 import com.dk.project_blackjack.helpers.FragmentStarter;
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         if (id == R.id.action_settings) {
             SettingsFragment sf = new SettingsFragment();
             fragmentStarter.startFragment(sf);
+        }
+        else if(id == R.id.action_about){
+            AboutFragment af = new AboutFragment();
+            fragmentStarter.startFragment(af);
         }
 
         return super.onOptionsItemSelected(item);
