@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dk.project_blackjack.R;
 import com.dk.project_blackjack.helpers.FragmentStarter;
+import com.dk.webservice.WebServiceRequestBuilder;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -21,12 +24,24 @@ import butterknife.OnClick;
 
 public class ContactFragment extends Fragment {
     private String title = "";
+    private WebServiceRequestBuilder builder;
+    private String serviceAnswer;
+
+    @BindView(R.id.eT_name)
+    EditText etName;
+
+    @BindView(R.id.eT_email)
+    EditText etEmail;
+
+    @BindView(R.id.eT_msg)
+    EditText etMsg;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
         ButterKnife.bind(this, view);
         title = getResources().getString(R.string.contact_fragment_title);
+        builder = new WebServiceRequestBuilder();
         return view;
     }
 
@@ -43,6 +58,7 @@ public class ContactFragment extends Fragment {
 
     @OnClick(R.id.button_send_mail)
     public void onButtonSendMailClicked(){
-        Toast.makeText(getActivity().getApplicationContext(), "Message sent!", Toast.LENGTH_SHORT).show();
+        builder.sendEmail(etName.getText().toString(), etEmail.getText().toString(), etMsg.getText().toString());
+
     }
 }
