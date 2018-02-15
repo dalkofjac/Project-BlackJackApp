@@ -16,6 +16,7 @@ public class EmailSender implements WebServiceInterface {
     private String name;
     private String email;
     private String msg;
+    private String serviceAnswer;
 
     public EmailSender(String name, String email, String msg){
         this.name = name;
@@ -24,7 +25,8 @@ public class EmailSender implements WebServiceInterface {
     }
 
     @Override
-    public void sendRequestToWS(){
+    public String sendRequestToWS(){
+        serviceAnswer = "";
         try {
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
@@ -39,6 +41,7 @@ public class EmailSender implements WebServiceInterface {
                     .build();
 
             Response response = client.newCall(request).execute();
+            serviceAnswer = response.body().string();
 
             if (!response.isSuccessful()) {
                 throw new IOException("Unexpected code " + response);
@@ -46,6 +49,7 @@ public class EmailSender implements WebServiceInterface {
         }catch (IOException e){
             e.printStackTrace();
         }
+        return serviceAnswer;
     }
 
 }

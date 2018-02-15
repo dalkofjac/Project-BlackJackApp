@@ -7,19 +7,26 @@ import android.os.AsyncTask;
  */
 
 public class WebServiceRequestBuilder {
+    private String replyMsg;
     private WebServiceInterface mWebServiceInterface;
 
     public WebServiceRequestBuilder(){}
 
-    public void sendEmail(String name, String email, String msg){
+    public String sendEmail(String name, String email, String msg){
         mWebServiceInterface = new EmailSender(name, email, msg);
-        AsyncTask task = new AsyncTask<Object, Object, Void>() {
+        AsyncTask task = new AsyncTask<Object, Object, Object>() {
             @Override
-            protected Void doInBackground(Object... params) {
-                mWebServiceInterface.sendRequestToWS();
-                return null;
+            protected String doInBackground(Object... params) {
+                String serviceAnswer;
+                serviceAnswer = mWebServiceInterface.sendRequestToWS();
+                return serviceAnswer;
             }
         };
-        task.execute();
+        try {
+            replyMsg = task.execute().get().toString();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return replyMsg;
     }
 }

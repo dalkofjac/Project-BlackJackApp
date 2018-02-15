@@ -24,8 +24,8 @@ import butterknife.OnClick;
 
 public class ContactFragment extends Fragment {
     private String title = "";
+    private String serviceAnswer = "";
     private WebServiceRequestBuilder builder;
-    private String serviceAnswer;
 
     @BindView(R.id.eT_name)
     EditText etName;
@@ -58,7 +58,18 @@ public class ContactFragment extends Fragment {
 
     @OnClick(R.id.button_send_mail)
     public void onButtonSendMailClicked(){
-        builder.sendEmail(etName.getText().toString(), etEmail.getText().toString(), etMsg.getText().toString());
-
+        serviceAnswer = builder.sendEmail(etName.getText().toString(),
+                etEmail.getText().toString(), etMsg.getText().toString());
+        if(serviceAnswer.matches("done")){
+            Toast.makeText(getActivity().getApplicationContext(),
+                    "Message sent!", Toast.LENGTH_SHORT).show();
+            etName.setText("");
+            etEmail.setText("");
+            etMsg.setText("");
+        }
+        else{
+            Toast.makeText(getActivity().getApplicationContext(),
+                    "Error occurred while sending a message.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

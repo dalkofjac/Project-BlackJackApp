@@ -5,5 +5,5 @@ package com.dk.webservice;
  */
 
 public interface WebServiceInterface {
-    void sendRequestToWS();
+    String sendRequestToWS();
 }
