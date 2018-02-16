@@ -12,6 +12,14 @@ public class WebServiceRequestBuilder {
 
     public WebServiceRequestBuilder(){}
 
+    /**
+     * Method that sends information user submitted to the server from where email is being sent
+     * to the actual receiver.
+     * @param name
+     * @param email
+     * @param msg
+     * @return Return is a simple replay message, 'done' if succeed or 'error' if it didn't.
+     */
     public String sendEmail(String name, String email, String msg){
         mWebServiceInterface = new EmailSender(name, email, msg);
         AsyncTask task = new AsyncTask<Object, Object, Object>() {
