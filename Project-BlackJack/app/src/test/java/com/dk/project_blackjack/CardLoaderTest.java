@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class CardLoaderTest{
     int position;
+    int cardsTotal;
     CardLoader cardLoader = new CardLoader();
     ArrayList<Card> cardList = new ArrayList<Card>();
 
@@ -29,16 +30,27 @@ public class CardLoaderTest{
         position = 0;
         actualResult = cardLoader.getCardFullName(cardList, position);
         expectedResult = "Ace of Spades (1/11)";
-        assertEquals("Greška kod prikaza imena karte", actualResult, expectedResult);
+        assertEquals("Error while getting card's name", actualResult, expectedResult);
 
         position = 5;
         actualResult = cardLoader.getCardFullName(cardList, position);
         expectedResult = "Six of Spades (6)";
-        assertEquals("Greška kod prikaza imena karte", actualResult, expectedResult);
+        assertEquals("Error while getting card's name", actualResult, expectedResult);
 
         position = 51;
         actualResult = cardLoader.getCardFullName(cardList, position);
         expectedResult = "King of Diamonds (10)";
-        assertEquals("Greška kod prikaza imena karte", actualResult, expectedResult);
+        assertEquals("Error while getting card's name", actualResult, expectedResult);
+    }
+
+    @Test
+    public void loadDeckTest() throws Exception{
+        cardList = cardLoader.loadDeck();
+
+        cardsTotal = 52;
+        assertEquals("Error while loading cards into the deck (not enough cards in deck)",
+                cardsTotal > cardList.size(), false);
+        assertEquals("Error while loading cards into the deck (too many cards in deck)",
+                cardsTotal < cardList.size(), false);
     }
 }
